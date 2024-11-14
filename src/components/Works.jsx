@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import Tilt from "react-tilt";
+import { Tilt } from "react-tilt";
 import { loupe } from "../assets";
 import { fadeIn } from "../utils/motion";
 import { projects } from "../constants";
