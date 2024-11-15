@@ -12,6 +12,7 @@
     "@emailjs/browser": "^4.4.1",
     "@react-three/drei": "^9.116.1",
     "@react-three/fiber": "^8.17.10",
+    "3dfolio": "file:",
     "framer-motion": "^11.11.16",
     "maath": "^0.10.8",
     "react": "^18.3.1",
