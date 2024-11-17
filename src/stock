@@ -1,0 +1,172 @@
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Tilt } from "react-tilt";
+import { loupe } from "../assets";
+import { fadeIn } from "../utils/motion";
+import { projects } from "../constants";
+import { styles } from "../styles";
+import { SectionWrapper } from "../hoc";
+
+// Composant ProjectCard
+const ProjectCard = ({
+  index,
+  name,
+  description,
+  date,
+  tags,
+  image,
+  realisation,
+  video_link,
+}) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  // Gestion dynamique de la taille de la fenêtre
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+  return (
+    <>
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="relative w-[90%] max-w-[800px] h-[60%] max-h-[450px] p-5 bg-white rounded-lg flex flex-col justify-center items-center">
+            <button
+              onClick={closeModal}
+              className="absolute top-2 right-2 text-[red] text-2xl"
+            >
+              &times;
+            </button>
+            <video
+              className="w-full h-full rounded-lg"
+              controls
+              controlsList="nodownload"
+              src={video_link}
+            >
+              Votre navigateur ne prend pas en charge la lecture de vidéos.
+            </video>
+          </div>
+        </div>
+      )}
+
+      <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}>
+        <Tilt
+          options={{
+            max: 45,
+            scale: 1,
+            speed: 450,
+          }}
+          className="bg-tertiary p-5 rounded-2xl w-full max-w-sm sm:max-w-md lg:max-w-lg "
+        >
+          <div
+            className={`relative w-full ${
+              windowWidth < 768 ? "h-48" : "h-60"
+            } lg:h-72 cursor-pointer`}
+            onClick={openModal}
+          >
+            <img
+              src={image}
+              alt="project_image"
+              className="w-full h-full object-cover rounded-2xl"
+            />
+            <div className="absolute inset-0 flex justify-end m-3 ">
+              <div className="black-gradient w-10 h-10 rounded-full flex justify-center items-center">
+                <img
+                  src={loupe}
+                  alt="source code"
+                  className="w-1/2 h-1/2 object-contain"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-5">
+            <h3 className="text-white font-bold text-lg sm:text-xl">
+              {name}
+            </h3>
+            <p className="mt-2 text-secondary text-sm">{description}</p>
+            <p className="mt-2 text-secondary text-sm">
+              <strong>{date}</strong>
+            </p>
+            <p className="mt-2 text-secondary text-sm">
+              <strong>Participation :</strong> {realisation}
+            </p>
+          </div>
+
+          <div className="mt-4 flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <p key={`${name}-${tag.name}`} className={`text-sm ${tag.color}`}>
+                #{tag.name}
+              </p>
+            ))}
+          </div>
+        </Tilt>
+      </motion.div>
+    </>
+  );
+};
+
+// Composant Works
+const Works = () => {
+  // État pour gérer la largeur de la fenêtre
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  // Met à jour la largeur de la fenêtre quand celle-ci est redimensionnée
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Détermine le nombre de colonnes en fonction de la taille de la fenêtre
+  const getColumns = () => {
+    if (windowWidth >= 1024) {
+      return 3; 
+    } else if (windowWidth >= 768) {
+      return 2; 
+    } else {
+      return 1;
+    }
+  };
+
+  const projectCards = [];
+  for (let i = 0; i < projects.length; i++) {
+    projectCards.push(
+      <ProjectCard key={`project-${i}`} index={i} {...projects.at(i)} />
+    );
+  }
+
+  return (
+    <div className="w-full">
+      <motion.div variants={fadeIn()}>
+        <p className={styles.sectionSubText}>Mes travaux</p>
+        <h2 className={styles.sectionHeadText}>Projets.</h2>
+      </motion.div>
+
+      <div className="w-full flex">
+        <motion.p
+          variants={fadeIn("", "", 0.1, 1)}
+          className="mt-3 text-secondary text-sm sm:text-base md:text-lg max-w-3xl leading-relaxed"
+        >
+          Les projets présentés ci-dessous illustrent mes compétences et mon
+          expertise à travers des exemples pratiques de mon travail. Ils
+          démontrent ma capacité à résoudre des défis complexes, à utiliser
+          diverses technologies et à gérer efficacement des projets.
+        </motion.p>
+      </div>
+
+      <div
+        className={`mt-20 grid gap-7 grid-cols-1 sm:grid-cols-2 lg:grid-cols-${getColumns()}`}
+      >
+        {projectCards}
+      </div>
+    </div>
+  );
+};
+
+export default SectionWrapper(Works, "work");  ne pas afficher en grid mais en ligne
