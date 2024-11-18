@@ -169,4 +169,4 @@ const Works = () => {
   );
 };
 
-export default SectionWrapper(Works, "work");  ne pas afficher en grid mais en ligne
+export default SectionWrapper(Works, "work");  
