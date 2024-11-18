@@ -116,11 +116,11 @@ const Works = () => {
       <h2 className={styles.sectionHeadText}>Projets.</h2>
 
       <div className="w-full flex">
-        <p className="mt-3 text-secondary text-sm sm:text-base md:text-lg max-w-3xl leading-relaxed">
+        <p className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]">
           Les projets présentés ci-dessous illustrent mes compétences et mon
           expertise à travers des exemples pratiques de mon travail. Ils
           démontrent ma capacité à résoudre des défis complexes, à utiliser
-          diverses technologies et à gérer efficacement des projets.
+          diverses technologies et à gérer efficacement des projets. En cliquant sur l'image d'un projet, vous pourrez visionner une vidéo présentant sa réalisation.
         </p>
       </div>
 

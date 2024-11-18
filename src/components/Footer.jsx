@@ -20,7 +20,7 @@ const Footer = () => {
             Email
           </a>
           <a
-            href="tel:+771308507"
+            href="tel:+221771308507"
             className="flex items-center gap-2 text-white text-[18px] font-medium cursor-pointer hover:text-secondary"
           >
             <img src={phoneIcon} alt="phone" className="w-[20px] h-[20px]" />

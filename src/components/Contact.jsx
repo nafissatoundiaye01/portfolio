@@ -108,7 +108,7 @@ const Contact = () => {
               name="message"
               value={form.message}
               onChange={handleChange}
-              placeholder="Que voulez-vous m'addresser ?"
+              placeholder="Que voulez-vous m'adresser ?"
               className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
             />
           </label>
