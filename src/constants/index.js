@@ -38,7 +38,8 @@ import {
   mastercloudVideo,
   cafetariatVideo,
   medicVideo,
-  biblioVidéo
+  biblioVidéo,
+  mongodb
 } from "../assets";
 
 
@@ -124,6 +125,10 @@ const technologies = [
   {
     name: "MySQL",
     icon: mysql,
+  },
+  {
+    name: "Mongo DB",
+    icon: mongodb,
   },
   {
     name: "Oracle DB",
