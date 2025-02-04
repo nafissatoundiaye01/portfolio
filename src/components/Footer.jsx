@@ -26,15 +26,7 @@ const Footer = () => {
             <img src={phoneIcon} alt="phone" className="w-[20px] h-[20px]" />
             Téléphone
           </a>
-          <a
-            href="https://github.com/nafissatoundiaye01"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 text-white text-[18px] font-medium cursor-pointer hover:text-secondary"
-          >
-            <img src={githubIcon} alt="github" className="w-[20px] h-[20px]" />
-            GitHub
-          </a>
+          
         </div>
 
         {/* Section copyright */}
