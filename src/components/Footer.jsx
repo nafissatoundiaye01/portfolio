@@ -31,7 +31,7 @@ const Footer = () => {
 
         {/* Section copyright */}
         <div className='mt-4 sm:mt-0 text-center text-white text-[16px]'>
-          <p>@2024 Nafissatou Ndiaye. Fait avec React.</p>
+          <p>@2025 Nafissatou Ndiaye. Fait avec React.</p>
         </div>
       </div>
     </footer>
